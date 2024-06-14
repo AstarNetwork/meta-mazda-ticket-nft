@@ -44,7 +44,7 @@ contract MetaMazdaTicket is ERC721A, ERC2981, AccessControl, Ownable {
         locked = false;
         paused = false;
         baseContractURI = "";
-        baseURI = "ipfs://bafkreidq3rk2w3whrthvsaauvwx7havlux2ksklykz63ed3r2e4ru3gsle";
+        baseURI = "ipfs://bafkreie6jzcztlunjkkafvfz7b6k32ebztym5jmvfk2pcod7qtnkx5nu4a";
         baseExtension = ".json";
         mintLimit = 1;
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);

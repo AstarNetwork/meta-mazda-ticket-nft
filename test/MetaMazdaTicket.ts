@@ -5,7 +5,7 @@ const NAME = "MetaMazdaTicket";
 const SYMBOL = "MAZDA";
 const MAX_SUPPLY = 1111;
 const CONTRACT_URI_NEW = 'data:application/json;utf8,{"name": "Yoki collection","description":"Yoki collection Testnet","image": "https://bafybeiciwh2uki577w2fwgxde32ozaeyd3dgd3juhr3xirxqbhfkwrullu.ipfs.nftstorage.link/0.png"}';
-const BASE_URI = "ipfs://bafybeid7m6zourukghb3uajd45qo4seuny3rpdyuy6yhjfp6ja3d6pgy2e/"
+const BASE_URI = "ipfs://bafkreie6jzcztlunjkkafvfz7b6k32ebztym5jmvfk2pcod7qtnkx5nu4a"
 const ROTATE_METADATA = 1;
 
 describe("MetaMazdaTicket contract", function () {
