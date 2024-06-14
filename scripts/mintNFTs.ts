@@ -1,7 +1,13 @@
-import { ethers } from 'ethers';
+// npx hardhat run scripts/mintNFTs.ts --network zKyoto
+// npx hardhat run scripts/mintNFTs.ts --network astarZkEvm
+
+import { ethers, network } from 'hardhat';
 import fs from 'fs';
 import csv from 'csv-parser';
 import { expect } from 'chai';
+
+// const MAZDA_CONTRACT = "0xaCF6F481690dE95e333C706e3C96ef940Bc2034C"; //zKyoto
+const MAZDA_CONTRACT = ; //astarZkEvm
 
 const contractABI = [
   "function mint(address to, uint256 tokenId) public",
@@ -27,17 +33,17 @@ async function readAddressesFromCsv() {
 }
 
 // Function to mint NFTs to all addresses
-async function mintNFTs(contractAddress: string) {
+async function mintNFTs() {
   const PRIVATE_KEY = process.env.ACCOUNT_PRIVATE_KEY;
   if (!PRIVATE_KEY) throw new Error('PRIVATE_KEY env variable is not set');
-  const RPC_URL = process.env.RPC_URL;
-  if (!RPC_URL) throw new Error('RPC_URL env variable is not set');
 
-  const provider = new ethers.JsonRpcProvider(RPC_URL);
-  const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-  const contract = new ethers.Contract(contractAddress, contractABI, wallet);
-  expect(await contract.hasRole(MINTER_ROLE, wallet.address)).to.be.true;
+  const wallet = new ethers.Wallet(PRIVATE_KEY);
+  const signer = wallet.connect(ethers.provider);
+  const signerAddress = await signer.getAddress();
+  const contract = new ethers.Contract(MAZDA_CONTRACT, contractABI, signer);
+  expect(await contract.hasRole(MINTER_ROLE, signerAddress)).to.be.true;
 
+  console.log(`Minting NFTs using \naccount: ${signerAddress} \nnetwork: ${network.name} \ncontract: ${MAZDA_CONTRACT} `)
   var now = new Date();
   console.log(`minting started at: ${now.toISOString()}\n---`);
 
@@ -54,5 +60,16 @@ async function mintNFTs(contractAddress: string) {
   const supply = await contract.totalSupply();
   console.log("total supply", supply);
 }
+
+async function main() {
+  try {
+    await mintNFTs();
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+}
+
+main();
 
 export { mintNFTs };

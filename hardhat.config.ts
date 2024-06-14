@@ -6,7 +6,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config({ path: __dirname + "/.env" });
 const ACCOUNT_PRIVATE_KEY = process.env.ACCOUNT_PRIVATE_KEY || "";
-console.log("PrivateKey set:", !!ACCOUNT_PRIVATE_KEY)
+if (!ACCOUNT_PRIVATE_KEY) throw new Error('PRIVATE_KEY env variable is not set');
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -79,7 +79,7 @@ const config: HardhatUserConfig = {
           browserURL: "https://astar-zkevm.explorer.startale.com/",
         },
       },
-      
+
     ],
   },
 };

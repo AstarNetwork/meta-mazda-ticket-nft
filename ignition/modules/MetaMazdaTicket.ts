@@ -1,6 +1,6 @@
 // npx hardhat ignition deploy ignition/modules/MetaMazdaTicket.ts --network zKyoto --verify
 // npx hardhat ignition deploy ignition/modules/MetaMazdaTicket.ts --network astarZkEvm --verify
-
+// npx hardhat ignition deploy ignition/modules/MetaMazdaTicket.ts --network hardhat
 
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
