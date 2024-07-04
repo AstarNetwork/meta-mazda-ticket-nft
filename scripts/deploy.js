@@ -1,4 +1,5 @@
-//npx hardhat run scripts/deploy.js --network hardhat
+//npx hardhat run scripts/deploy.js --network zKyoto
+//npx hardhat run scripts/deploy.js --network astarZkEvm
 
 require('dotenv').config();
 const hre = require("hardhat");

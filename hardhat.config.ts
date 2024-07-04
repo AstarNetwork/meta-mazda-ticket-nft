@@ -5,8 +5,10 @@ import "@nomicfoundation/hardhat-ignition"
 import * as dotenv from "dotenv";
 
 dotenv.config({ path: __dirname + "/.env" });
-const ACCOUNT_PRIVATE_KEY = process.env.ACCOUNT_PRIVATE_KEY || "";
-if (!ACCOUNT_PRIVATE_KEY) throw new Error('PRIVATE_KEY env variable is not set');
+const TESTNET_PRIVATE_KEY = process.env.ZKYOTO_PRIVATE_KEY || "";
+const MAINNET_PRIVATE_KEY = process.env.ASTARZKEVM_PRIVATE_KEY || "";
+console.log("TESTNET_PRIVATE_KEY set:", !!TESTNET_PRIVATE_KEY);
+console.log("MAINNET_PRIVATE_KEY set:", !!MAINNET_PRIVATE_KEY);
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -28,33 +30,17 @@ const config: HardhatUserConfig = {
         // blockNumber: process.env.FORK_BLOCK_NUMBER === "true" ? 13546500 : undefined
       },
     },
-    zKatana: {
-      url: `https://rpc.zkatana.gelato.digital`,
-      accounts: [ACCOUNT_PRIVATE_KEY]
-    },
-    zKatana2: {
-      url: `https://rpc.startale.com/zkatana`,
-      accounts: [ACCOUNT_PRIVATE_KEY]
-    },
-    zkyotoGelato: {
-      url: `https://rpc.zkyoto.gelato.digital`,
-      accounts: [ACCOUNT_PRIVATE_KEY]
-    },
     zKyoto: {
       url: `https://rpc.startale.com/zkyoto`,
-      accounts: [ACCOUNT_PRIVATE_KEY]
-    },
-    mumbai: {
-      url: `https://polygon-testnet.public.blastapi.io`,
-      accounts: [ACCOUNT_PRIVATE_KEY]
+      accounts: [TESTNET_PRIVATE_KEY]
     },
     shibuya: {
       url: `https://evm.shibuya.astar.network`,
-      accounts: [ACCOUNT_PRIVATE_KEY]
+      accounts: [TESTNET_PRIVATE_KEY]
     },
     astarZkEvm: {
       url: `https://rpc.startale.com/astar-zkevm`,
-      accounts: [ACCOUNT_PRIVATE_KEY]
+      accounts: [MAINNET_PRIVATE_KEY]
     },
   },
   etherscan: {
